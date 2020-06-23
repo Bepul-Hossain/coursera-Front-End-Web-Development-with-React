@@ -13,13 +13,14 @@ function About(props) {
   const leaders = props.leaders.map((leader) => {
     return <RenderLeader leader={leader} />;
   });
+
   function RenderLeader({ leader }) {
     return (
       <Media key={leader.id}>
         <Media left>
           <Media object src={leader.image} alt={leader.name} />
         </Media>
-        <Media body className="ml-2">
+        <Media body className="ml-5">
           <Media heading>{leader.name}</Media>
           <p>{leader.designation}</p>
           <p>{leader.description}</p>
