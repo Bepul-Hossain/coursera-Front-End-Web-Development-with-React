@@ -13,7 +13,6 @@ function About(props) {
   const leaders = props.leaders.map((leader) => {
     return <RenderLeader leader={leader} />;
   });
-
   function RenderLeader({ leader }) {
     return (
       <Media key={leader.id}>
