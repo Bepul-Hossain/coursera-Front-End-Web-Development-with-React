@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
+
 function About(props) {
   const leaders = props.leaders.map((leader) => {
     return <RenderLeader leader={leader} />;
