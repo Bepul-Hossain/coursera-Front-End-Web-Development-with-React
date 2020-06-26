@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { LocalForm, Control, Errors } from "react-redux-form";
+import { addComment } from "../redux/ActionCreators";
 
 function RenderDish({ dish }) {
   return (
@@ -90,7 +91,7 @@ const DishDetail = (props) => {
           <div className="col">
             <RenderComments comments={props.comments} />
 
-            <SubmitCommentForm />
+            <CommentForm dishId={props.dish.id} addComment={props.addComment} />
           </div>
         </div>
       </div>
@@ -102,7 +103,7 @@ const DishDetail = (props) => {
 
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
-class SubmitCommentForm extends React.Component {
+class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -117,9 +118,15 @@ class SubmitCommentForm extends React.Component {
     });
   }
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    // console.log("Current State is: " + JSON.stringify(values));
+    // alert("Current State is: " + JSON.stringify(values));
     this.toggleModal();
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
   render() {
     return (
