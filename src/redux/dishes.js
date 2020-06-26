@@ -14,7 +14,7 @@ export const Dishes = (
         ...state,
         isLoading: false,
         errMess: null,
-        deshes: action.payload,
+        dishes: action.payload,
       };
     case ActionTypes.DISHES_LOADING:
       return { ...state, isLoading: true, errMess: null, dishes: [] };
