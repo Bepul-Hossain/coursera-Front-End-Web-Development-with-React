@@ -108,7 +108,7 @@ const DishDetail = (props) => {
           <div className="col">
             <RenderComments comments={props.comments} />
 
-            <CommentForm dishId={props.dish.id} addComment={props.addComment} />
+            <CommentForm dishId={props.dish.id} postComment={props.postComment} />
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ class CommentForm extends React.Component {
     // console.log("Current State is: " + JSON.stringify(values));
     // alert("Current State is: " + JSON.stringify(values));
     this.toggleModal();
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
