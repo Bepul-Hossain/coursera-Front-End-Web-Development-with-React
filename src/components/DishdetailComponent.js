@@ -23,16 +23,24 @@ import { LocalForm, Control, Errors } from "react-redux-form";
 import { addComment } from "../redux/ActionCreators";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5 m-1">
-      <Card>
-        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-        <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
-        </CardBody>
-      </Card>
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: "scale(0.5) translateY(-50%)",
+        }}
+      >
+        <Card>
+          <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </FadeTransform>
     </div>
   );
 }
@@ -41,19 +49,23 @@ function RenderComments({ comments }) {
   if (comments != null) {
     let list = comments.map((comments) => {
       return (
-        <li key={comments.id}>
-          <div>
-            <p>{comments.comment}</p>
-            <p>
-              {comments.author},
-              {new Intl.DateTimeFormat("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "2-digit",
-              }).format(new Date(Date.parse(comments.date)))}
-            </p>
-          </div>
-        </li>
+        <Stagger in>
+          <Fade in>
+            <li key={comments.id}>
+              <div>
+                <p>{comments.comment}</p>
+                <p>
+                  {comments.author},
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(Date.parse(comments.date)))}
+                </p>
+              </div>
+            </li>
+          </Fade>
+        </Stagger>
       );
     });
 
@@ -108,7 +120,10 @@ const DishDetail = (props) => {
           <div className="col">
             <RenderComments comments={props.comments} />
 
-            <CommentForm dishId={props.dish.id} postComment={props.postComment} />
+            <CommentForm
+              dishId={props.dish.id}
+              postComment={props.postComment}
+            />
           </div>
         </div>
       </div>
