@@ -1,3 +1,14 @@
+### Quick start
+```
+1. clone project.
+2. npm install
+3. npm install json-server -g
+4. Enter into json-server folder 
+5. json-server --watch db.json -p 3001 -d 2000
+6. Enter into root folder where is remain package.json file
+7. yarn start
+
+```
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

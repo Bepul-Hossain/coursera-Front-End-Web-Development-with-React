@@ -7,20 +7,15 @@ import {
   CardTitle,
   BreadcrumbItem,
   Breadcrumb,
-  Collapse,
-  Nav,
-  NavItem,
   Button,
   Modal,
   ModalHeader,
   ModalBody,
   Row,
-  Label,
   Col,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { LocalForm, Control, Errors } from "react-redux-form";
-import { addComment } from "../redux/ActionCreators";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
