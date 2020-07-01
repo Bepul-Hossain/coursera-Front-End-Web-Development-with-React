@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,8 +8,7 @@ import {
   Col,
   Label,
 } from "reactstrap";
-import { Control, Errors, Form } from "react-redux-form";
-import { Link } from "react-router-dom";
+import { Control, Form, Errors } from "react-redux-form";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -20,15 +20,22 @@ const validEmail = (val) =>
 class Contact extends Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(values) {
     console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    // alert('Current State is: ' + JSON.stringify(values));
     this.props.resetFeedbackForm();
-    // event.preventDefault();
+    this.props.postFeedback(
+      values.firstname,
+      values.lastname,
+      values.telnum,
+      values.email,
+      values.agree,
+      values.contactType,
+      values.message
+    );
   }
 
   render() {
@@ -46,7 +53,7 @@ class Contact extends Component {
             <hr />
           </div>
         </div>
-        ;
+
         <div className="row row-content">
           <div className="col-12">
             <h3>Location Information</h3>
@@ -65,7 +72,7 @@ class Contact extends Component {
               <i className="fa fa-fax"></i>: +852 8765 4321
               <br />
               <i className="fa fa-envelope"></i>:{" "}
-              <a href="#Conf">confusion@food.net</a>
+              <a href="mailto:confusion@food.net">confusion@food.net</a>
             </address>
           </div>
           <div className="col-12 col-sm-6 offset-sm-1">
@@ -73,24 +80,25 @@ class Contact extends Component {
           </div>
           <div className="col-12 col-sm-11 offset-sm-1">
             <div className="btn-group" role="group">
-              <a 
-                role="button"
+              <a
                 className="btn btn-primary"
-                href="#Call"
+                href="tel:+85212345678"
+                role="button"
               >
-                <i className="fa fa-phone"></i> Call
+                <i className="fa fa-phone"></i>
+                Call
               </a>
-              <a role="button" className="btn btn-info"
-              href="#Skype"
-              >
-                <i className="fa fa-skype"></i> Skype
+              <a className="btn btn-info" role="button">
+                <i className="fa fa-skype"></i>
+                Skype
               </a>
               <a
-                role="button"
                 className="btn btn-success"
-                href="#Email"
+                href="mailto:confusion@food.net"
+                role="button"
               >
-                <i className="fa fa-envelope-o"></i> Email
+                <i className="fa fa-envelope-o"></i>
+                Email
               </a>
             </div>
           </div>
@@ -204,10 +212,7 @@ class Contact extends Component {
                     name="email"
                     placeholder="Email"
                     className="form-control"
-                    validators={{
-                      required,
-                      validEmail,
-                    }}
+                    validators={{ required, validEmail }}
                   />
                   <Errors
                     className="text-danger"
@@ -221,23 +226,33 @@ class Contact extends Component {
                 </Col>
               </Row>
               <Row className="form-group">
-                <Col md={{ size: 6, offset: 2 }}>
+                <Col
+                  md={{
+                    size: 6,
+                    offset: 2,
+                  }}
+                >
                   <div className="form-check">
                     <Label check>
                       <Control.checkbox
+                        className="form-check-input"
                         model=".agree"
                         name="agree"
-                        className="form-check-input"
                       />{" "}
                       <strong>May we contact you?</strong>
                     </Label>
                   </div>
                 </Col>
-                <Col md={{ size: 3, offset: 1 }}>
+                <Col
+                  md={{
+                    size: 3,
+                    offset: 1,
+                  }}
+                >
                   <Control.select
+                    className="form-control"
                     model=".contactType"
                     name="contactType"
-                    className="form-control"
                   >
                     <option>Tel.</option>
                     <option>Email</option>
@@ -250,17 +265,22 @@ class Contact extends Component {
                 </Label>
                 <Col md={10}>
                   <Control.textarea
-                    model=".message"
+                    className="form-control"
                     id="message"
+                    model=".message"
                     name="message"
                     rows="12"
-                    className="form-control"
-                  ></Control.textarea>
+                  />
                 </Col>
               </Row>
               <Row className="form-group">
-                <Col md={{ size: 10, offset: 2 }}>
-                  <Button type="submit" color="primary">
+                <Col
+                  md={{
+                    size: 10,
+                    offset: 2,
+                  }}
+                >
+                  <Button color="primary" type="submit">
                     Send Feedback
                   </Button>
                 </Col>

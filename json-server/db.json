@@ -217,6 +217,14 @@
       "comment": "This is Comment\n",
       "date": "2020-06-29T11:30:48.770Z",
       "id": 21
+    },
+    {
+      "dishId": 3,
+      "rating": "3",
+      "author": "Bepul2",
+      "comment": "db.json test",
+      "date": "2020-07-01T03:02:46.459Z",
+      "id": 22
     }
   ],
   "promotions": [
@@ -279,6 +287,26 @@
       "message": "afadsfds",
       "date": "2017-12-04T09:41:49.890Z",
       "id": 1
+    },
+    {
+      "firstname": "abc",
+      "lastname": "sdsdsd",
+      "telnum": "0155465465545",
+      "email": "bs@gmail.com",
+      "agree": true,
+      "contactType": "Email",
+      "message": "dskld,mfklsm.kdm",
+      "id": 2
+    },
+    {
+      "firstname": "djksdkslkdj",
+      "lastname": "sdsdsd",
+      "telnum": "0155465465545",
+      "email": "bs@gmail.com",
+      "agree": true,
+      "contactType": "Email",
+      "message": "fgsd",
+      "id": 3
     }
   ]
 }
